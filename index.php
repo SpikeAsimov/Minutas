@@ -55,7 +55,7 @@ if($_POST) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sistema de Gestión de Inventario</title>
+	<title>Sistema de Gestión de Minutas</title>
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
