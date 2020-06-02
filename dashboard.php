@@ -6,13 +6,13 @@ $sql = "SELECT * FROM product WHERE status = 1";
 $query = $connect->query($sql);
 $countProduct = $query->num_rows;
 
-$orderSql = "SELECT * FROM orders WHERE order_status = 1";
+$orderSql = "SELECT * FROM orders WHERE order_status = 1 AND order_date =  CURDATE()";
 $orderQuery = $connect->query($orderSql);
 $countOrder = $orderQuery->num_rows;
 
-$totalRevenue = "";
+$totalRevenue = 0;
 while ($orderResult = $orderQuery->fetch_assoc()) {
-	$totalRevenue = $orderResult['paid'];
+	$totalRevenue += $orderResult['grand_total'];
 }
 
 $lowStockSql = "SELECT * FROM product WHERE quantity <= 3 AND status = 1";
@@ -96,7 +96,7 @@ $connect->close();
 		  </div>
 
 		  <div class="cardContainer">
-		    <p> <i class="glyphicon glyphicon-usd"></i> Ingresos totales</p>
+		    <p> <i class="glyphicon glyphicon-usd"></i> Ingresos de Hoy</p>
 		  </div>
 		</div> 
 
