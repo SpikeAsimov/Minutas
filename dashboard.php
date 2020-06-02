@@ -81,7 +81,7 @@ $connect->close();
 		  </div>
 
 		  <div class="cardContainer">
-		    <p><?php echo date('e') .' '.date('d').', '.date('Y'); ?></p>
+		    <p><?php echo date('H') .' |||'.date('e') .' '.date('d').', '.date('Y'); ?></p>
 		  </div>
 		</div> 
 		<br/>
