@@ -72,13 +72,13 @@ if($_GET['o'] == 'add') {
 			  <div class="form-group">
 			    <label for="clientName" class="col-sm-2 control-label">Nombre del cliente</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Cliente" autocomplete="off" />
+			      <input type="text" class="form-control" id="clientName" name="clientName" value="Cliente" autocomplete="off" />
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">
 			    <label for="clientContact" class="col-sm-2 control-label">Teléfono del cliente</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Teléfono" autocomplete="off" />
+			      <input type="text" class="form-control" id="clientContact" name="clientContact" value="+54-3804" autocomplete="off" />
 			    </div>
 			  </div> <!--/form-group-->			  
 
@@ -193,10 +193,10 @@ if($_GET['o'] == 'add') {
 				  <div class="form-group">
 				    <label for="clientContact" class="col-sm-4 control-label">Método de pago</label>
 				    <div class="col-sm-8">
-				      <select class="form-control" name="paymentType" id="paymentType">
+				      <select class="form-control" name="paymentType" id="paymentType" disabled>
 				      	<option value="">-- Selecciona --</option>
 				      	<option value="1">Cheque</option>
-				      	<option value="2">Efectivo</option>
+				      	<option value="2" selected>Efectivo</option>
 				      	<option value="3">Tarjeta de crédito</option>
 				      </select>
 				    </div>
@@ -204,9 +204,9 @@ if($_GET['o'] == 'add') {
 				  <div class="form-group">
 				    <label for="clientContact" class="col-sm-4 control-label">Estado</label>
 				    <div class="col-sm-8">
-				      <select class="form-control" name="paymentStatus" id="paymentStatus">
+				      <select class="form-control" name="paymentStatus" id="paymentStatus" disabled>
 				      	<option value="">-- Selecciona --</option>
-				      	<option value="1">Pago completo</option>
+				      	<option value="1" selected>Pago completo</option>
 				      	<option value="2">Pago por adelantado</option>
 				      	<option value="3">No pagado</option>
 				      </select>
