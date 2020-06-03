@@ -77,11 +77,11 @@ $connect->close();
 	<div class="col-md-4">
 		<div class="card">
 		  <div class="cardHeader">
-		    <h1><?php echo date('d'); ?></h1>
+		    <h1><?php echo date('d').'/'.date('m').'/'.date('Y'); ?></h1>
 		  </div>
 
 		  <div class="cardContainer">
-		    <p><?php echo ' Fecha: '.date('d').'/'.date('m').'/'.date('Y'); ?></p>
+		    <p>Fecha de Hoy</p>
 		  </div>
 		</div> 
 		<br/>
