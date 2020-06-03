@@ -81,10 +81,7 @@ $connect->close();
 		  </div>
 
 		  <div class="cardContainer">
-		    <p><?php echo date('H') .' | '.date('i') .' | '.date('s') .' | '.date('e')
-
-
-                    .' '.date('d').', '.date('Y'); ?></p>
+		    <p><?php echo ' Fecha: '.date('d').'/'.date('m').'/'.date('Y'); ?></p>
 		  </div>
 		</div> 
 		<br/>
