@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de la Propiedad Inmueble</title>
+   
+   <link rel="stylesheet" type="text/css" href="themes/metro-blue/easyui.css">
+        <link rel="stylesheet" type="text/css" href="themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="themes/demo.css">  
+        <link rel="stylesheet" type="text/css" href="themes/color.css">
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+
+        <script type="text/javascript" src="../js/locale/easyui-lang-es.js"></script>
+        <script type="text/javascript" src="../js/datagrid-filter.js"></script>   
+        <!--
+        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>   -->
+
+
+        
+</head>
+<body>
+    <h2 align="left"><img src="imagenes/logo_registro.png" width='5%'>  Registro de la Propiedad Inmueble</h2>
+    
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-panel" style="padding:5px;">
+        
+        <a href="#" onclick="$('#dlg_tramite').window('open')"  class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">Carga</a>
+        
+        <a href="#" onclick="editUser()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">Editar</a>
+        
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">Acerca de</a>
+    </div>
+  
+  
+    <div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+       
+        <p style="font-size:14px;color:#444;">Sec. Tierras La Rioja</p>
+    </div>
+    
+         <div style="margin:20px 0;">
+            
+         </div>
+       
+       
+    <div class="easyui-layout" style="width:100%;height:450px;" >
+        <div data-options="region:'north'" style="height:50px"></div>
+        <div data-options="region:'south',split:true" style="height:50px;"></div>
+         <div data-options="region:'west',split:false" title="Buscar" style="width:400px;">
+           </br>
+            <select id="tipo" class="easyui-combobox" name="tipo"  label="tipo" labelPosition="top" style="width:100%;">
+                
+              
+                <option value="1">NRO TRAMITE</option>
+                <option value="0">APELLIDO Y NOMBRE</option>
+                <option value="2">FECHA</option>
+                
+                
+                 </select>
+              </br> </br>
+              <input type="date" name="fecha" id="fecha" >
+          </br> 
+          </br> 
+           <input class="easyui-textbox" id='tramite' data-options="prompt:'Buscar...'" style="width:75%;height:32px;"></br>
+           </br>
+          
+          </br>
+          
+
+          <div>
+
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" style="width:20%"   onclick="buscar($('#tramite').val(),$('#tipo').combobox('getValue'))">Buscar</a>
+          
+        </div>
+         </div>
+        <div id='grid_consulta' data-options="region:'center',singleSelect:'true',collapsible:'true'">
+     
+       
+       </div>
+       <div id="dlg_tramite" class="easyui-dialog" style="width:400px"
+            closed="true">
+        <form id="fm-carga-tramite" method="post" novalidate style="margin:0;padding:30px 70px">
+            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Cargar Tramite</div>
+            <div style="margin-bottom:10px">Nro tramite
+                <input name="nro_tramite" id="nro_tramite"     required="true" label="Apeynom" style="width:100%" onkeypress="myFunction(event);">
+            </div>
+             <div style="margin-bottom:10px">Mat/Reg
+                <input name="matricula" class="easyui-textbox" label="matricula" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">Minutas
+                <input name="apeynom" class="easyui-textbox" label="Dni" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">Acto
+                <input name="dni" class="easyui-textbox" label="Dni" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">T.U / REG:
+                <input class="easyui-textbox" name="detalle"  style="width:100%;height:60px" data-options="label:'Message:',multiline:true">
+            </div>
+             </form>
+            <div style="text-align:center;padding:5px 0">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#dlg').window('close')" style="width:80px">Cerrar</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok"  onclick="cargar();"style="width:80px">Cargar</a>
+        </div>
+ 
+            </div>
+
+            
+       
+
+       
+    </div>
+
+    
+
+    <script type="text/javascript">
+   
+    function buscar(nro_tramite,tipo){
+    
+         
+            $('#grid_consulta').datagrid({
+    url:'backend/consulta.php?nro_tramite='+nro_tramite+'&'+'tipo='+tipo+'&'+'fecha='+$('#fecha').val(),
+    //method:'GET'
+    columns:[[
+        {field:'id',title:'ID',width:20},
+        {field:'nro_tramite',title:'NRO_TRAMITE',width:60},
+        {field:'matricula',title:'MAT/REG',width:100},
+        {field:'apeynom',title:'MINUTAS',width:500,align:'right'},
+        {field:'dni',title:'ACTO',width:100,align:'right'},
+        {field:'detalle',title:'TU/REG',width:300,align:'right'},
+        {field:'estado',title:'ESTADO',width:200,align:'right'},
+        {field:'fechahora',title:'FECHA',width:200,align:'right'} ]]
+
+});
+            $('#grid_consulta').datagrid('reload');
+            
+     }
+      
+function cargar(){
+
+ $('#fm-carga-tramite').form('submit',{
+                url: 'backend/carga_comprobante.php',
+                onSubmit: function(){
+                    return $(this).form('validate');
+                },
+                success: function(result){
+                    var result = eval('('+result+')');
+                      
+                   if (result.errorMsg){
+                        $.messager.show({
+                          title: 'Error',
+                           msg: result.errorMsg
+                      });
+                        
+                    } else {
+                        $('#fm-carga-tramite').form('clear'); 
+                         $('#dlg_tramite').window('close');       // close the dialog
+                        
+                        //$('#grid_1').datagrid('reload');    // reload the user data
+                    }
+                }
+
+            });
+         
+        // buscar('','5');
+}
+     
+     function myFunction(e) {
+   var tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla == 13){
+        cargar();
+       
+       
+    }
+   
+   }
+/*/
+$('#grid_consulta').datagrid({//eventos correspondientes a la tabla
+                onDblClickRow: editUser();      });
+/*/
+  
+  function editUser(){
+            var row = $('#grid_consulta').datagrid('getSelected');
+            if (row){   
+                $('#dlg_tramite').dialog('open').dialog('center').dialog('setTitle','Edit User');
+                $('#fm-carga-tramite').form('load',row);
+                url = 'backend/consulta.php?nro_tramite='+row.nro_tramite+'&'+'tipo=1';
+            }
+               }
+   </script>
+</body>
+</html>
