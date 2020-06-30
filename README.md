@@ -1,2 +1,0 @@
-# Minutas
-Control Minutas
