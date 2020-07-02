@@ -1,8 +1,8 @@
 <?php
 include('agregar_venta.php');
-//include('agregar_excepcion.php');
-//include('consultar_ventas.php');
-//include('cargar_stock.php');
+include('agregar_excepcion.php');
+include('consultar_ventas.php');
+include('cargar_stock.php');
 
 ?>
 <!DOCTYPE html>
@@ -33,9 +33,9 @@ include('agregar_venta.php');
     </h1>
 
     <div class="easyui-panel" style="padding:5px;">
-        <a href="#" onclick="$('#dlg_nueva_venta').window('open')" class="easyui-linkbutton" data-options="plain:'true',iconCls:'icon-remove'" >Agregar Venta</a>
-        <a href="#" onclick="$('#dlg_consulta_ventas').window('open')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">Consultar Ventas</a>
-        <a href="#" onclick="$('#dlg_cargar_stock').windows('open')" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-add'" >Cargar Stock</a>
+        <a href="#" onclick="$('#win_nueva_venta').window('open')" class="easyui-linkbutton" data-options="plain:'true',iconCls:'icon-remove'" >Agregar Venta</a>
+        <a href="#" onclick="$('#win_consultar_ventas').window('open')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">Consultar Ventas</a>
+        <a href="#" onclick="$('#win_cargar_stock').windows('open')" class="easyui-linkbutton" data-options="plain:true, iconCls:'icon-add'" >Cargar Stock</a>
         <a href="#" class="easyui-linkbutton" data-options="plain:true">Salir</a>
     </div>    
 <!-- menu  -->

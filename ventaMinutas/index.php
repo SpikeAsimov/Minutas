@@ -85,9 +85,4 @@ body {
     </div>
   </section>
 </body>
-<script type="text/javascript">
-
-
-
-</script>
 </html>

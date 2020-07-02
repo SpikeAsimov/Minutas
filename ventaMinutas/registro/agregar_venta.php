@@ -1,4 +1,4 @@
-    <div id="dlg_nueva_venta" class="easyui-window" closed="true" title="Agregar Venta" style="width:100%;max-width:400px;padding:30px 60px;">
+    <div id="win_nueva_venta" class="easyui-window" closed="true" title="Agregar Venta" style="width:100%;max-width:400px;padding:30px 60px;">
         <form id="form_venta" method="post">            
             <div style="margin-bottom:20px">
 				<label for="tipoTramite">Tipo de tramite:</label>					
@@ -43,12 +43,12 @@
                 <input class="easyui-textbox" name="precio" readonly="true" style="width:50px" data-options="label:'Precio:', required:true">
             </div>
             <div style="margin-bottom: 20px">
-            	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:150px">Agregar Excepcion</a>	
+            	<a href="#" class="easyui-linkbutton" onclick="$('#dlg_agregar_excepcion').window('open')" style="width:150px">Agregar Excepcion</a>	
             </div>
             
         </form>
         <div style="text-align:center;padding:5px 0">
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:100px">Cargar Venta</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:100px">Cancelar</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="close()" style="width:100px">Cancelar</a>
         </div>
     </div>
