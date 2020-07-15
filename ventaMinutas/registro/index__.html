@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de Adjudicatarios</title>
+    <!-- <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">-->
+
+     <link rel="stylesheet" type="text/css" href="themes/metro-blue/easyui.css">
+        <link rel="stylesheet" type="text/css" href="themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="themes/demo.css">  
+        <link rel="stylesheet" type="text/css" href="themes/color.css">
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+       
+        <script type="text/javascript" src="js/locale/easyui-lang-es.js"></script>
+        <script type="text/javascript" src="js/datagrid-filter.js"></script>    
+     
+    <!--  <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>  -->
+
+
+        
+</head>
+<body>
+
+     
+    <!--<h2 align="left">Registro de la propiedad</h2>-->
+    <h2><img src="imagenes/logo_registro.png" width='5%'>Registro de La Propiedad Inmueble</h2>
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-panel" style="padding:5px;">
+        <a href="#" onclick="$('#dlg').window('open')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">Buscador</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'" >Gestion Folio Reales</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm2'">Inhibiciones</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">Sistema</a>
+        <a href="#" class="easyui-linkbutton" data-options="plain:true">Gestion de Tramite</a>
+        <a href="#" class="easyui-linkbutton" data-options="plain:true">Estadisticas</a>
+         <a href="#" class="easyui-linkbutton" data-options="plain:true">Configuracion</a>
+         <a href="#" class="easyui-linkbutton" data-options="plain:true">Otras Opciones</a>
+          <a href="#" class="easyui-linkbutton" data-options="plain:true">Salir</a>
+    </div>
+    <div id="mm1" style="width:150px;">
+        <div>Abm Folios</div>
+        <div >Verificaciones</div>
+    </div>
+    <div id="mm2" style="width:100px;">
+        <div>Help</div>
+        <div>Update</div>
+        <div>About</div>
+    </div>
+    <div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+        <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+        <p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
+    </div>
+<!-- menu  -->
+<!-- cuadra buscar  -->
+<div id="dlg" class="easyui-window" title="Buscar Folio" data-options="iconCls:'icon-search'" closed="true"style="width:100%"
+ top='180' border='thin' cls='c6' >
+<!--<div id="dlg" class="easyui-window" style="width:100%" closed="true"  border='thin' cls='c6' top='10'left='630'>-->
+        <form id="fm" method="post" novalidate style="margin:0;padding:30px 70px">
+            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Buscar Folios</div>
+            <table>
+              <tr>
+                <td>
+                  <div style="margin-bottom:10px">Criterio
+                <select class="easyui-combobox" name="state"  labelPosition="top" style="width:100%;">
+                <option value="AL">APELLIDO</option>
+                <option value="AK">NOMBRE</option>
+                <option value="AZ">MATRICULA</option>
+                <option value="AR">UBICACION</option>
+                <option value="CA">CIRCUNSCRIPCION</option>
+                <option value="CO">SECCION</option>
+                 <option value="CO">MANZANA</option>
+                 <option value="CO">PARCELA</option>
+            </select>
+                <input name="busca_1" id="busca_1"class="easyui-textbox" required="true" label="Busqueda" >
+                 <a href="#" class="easyui-linkbutton" iconCls="icon-search"   onclick="buscar($('#busca_1').val());">Buscar</a>
+            </div>
+          </td>
+        </tr>
+                
+            </table>
+        </form>
+        <div id='grid_1' data-options="region:'center',singleSelect:'true',collapsible:'true'" style="width:100%,height:50%">
+    
+       
+       </div>
+
+    </div>
+    <!-- cuadro buscar  -->
+<!-- cuadro folio  -->
+
+<div id="win-folio" class="easyui-window" title="--Folio--"  closed="true"style="width:100%" border='thin' cls='c6' >
+<!--<div id="dlg" class="easyui-window" style="width:100%" closed="true"  border='thin' cls='c6' top='10'left='630'>-->
+        <form id="fm-folio" method="post" novalidate style="margin:0;padding:30px 70px">
+            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">
+            <a href="#" class="easyui-linkbutton" >Ver Folio Digital</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-print'">Imprimir</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">Editar</a>
+            
+            </div>
+        <div id="cc" class="easyui-layout" style="width:100%;height:350px;">
+        <div data-options="region:'north',split:true" title="Datos Catastrales"style="height:100px">
+         <table border='0'>
+            <tr>
+                <td align="right">Matricula:  <input type="text" value="C-4025"></td>
+            </tr>
+            <tr>
+                <td>Nomenclatura:<input type="text" id="departa" ></td>
+                <td><input type="text" value="I"></td>
+                <td><input type="text" value="E"></td>
+                <td><input type="text" value="763"></td>
+                <td><input type="text" value="aa"></td>
+                <td>Hoja:<input type="text" value="aa"></td>
+                <td>Coordenadas:<input type="text" value="aa"></td>
+            </tr>
+         </table>
+         </div>
+        <div data-options="region:'south',split:true" style="height:100px;" >
+        
+        <div class="easyui-layout" data-options="fit:true" >
+            <div data-options="region:'west',split:true" style="width:300px;padding:10px"title="TITULARIDAD">
+                <div style="margin-bottom:20px">Nro Doc
+                <input class="easyui-textbox" name="dni" style="width:100%" data-options="label:'Name:dxsdas'">
+                </div>
+                <div style="margin-bottom:20px">Apellido Y Nombre
+                <input class="easyui-textbox" name="apeynom" style="width:100%" data-options="label:'Name:dxsdas'">
+                </div>
+                <div style="margin-bottom:20px">Cuit
+                <input class="easyui-textbox" name="cuit" style="width:100%" data-options="label:'Name:dxsdas'">
+                </div>
+                <div style="margin-bottom:20px">Sexo
+                <input class="easyui-textbox" name="sexo" style="width:100%" data-options="label:'Name:dxsdas'">
+                </div>
+            </div>
+            
+            <div data-options="region:'center'" style="width:100%;padding:10px">
+               <div class="easyui-tabs" style="width:100%">
+        <div title="Asiento Nro 1" style="padding:10px">
+            <p style="font-size:14px">
+                ASIENTO 5 DOMINIO
+ROJAS DARIO ANDRES * Soltero  * * ARG * D.N.I. 24579368 * CuiL 20-24579368-6 * VECINO DE LA RIOJA
+COMPRAVENTA $ 42.000 juntop c/otro lotes* S/Escrit. 45 01/04/2005* Esc. TIBURZI Reg.22* S/Cert. 645 08/03/2005* Presentacion 2391* 12/05/2005. INSCRIPCION PROVISIONAL POR 180 DIAS
+
+            </p>
+            
+        </div>
+        <div title="Asiento Nro 2" data-options="closable:true" style="padding:10px">
+            Sin Contenido
+            <!--<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true"></ul>-->
+        </div>
+        <div title="Asiento Nro 3" data-options="closable:true" style="padding:10px">
+            Sin Contenido
+        </div>
+    </div>
+            </div>
+        </div>
+   
+
+         </div>
+        <div data-options="region:'east',split:true"  style="width:200px;" title="ANTECEDENTE DOMINIAL">
+         <div style="margin-bottom:20px">Dominio
+                <input class="easyui-textbox" name="dominio" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+        <div style="margin-bottom:20px">Plano
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+        </div>
+        <div data-options="region:'west',split:true"  style="width:200px;" title="Parcela">
+            <div style="margin-bottom:20px">Tipo
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Unidad
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Piso
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Superficie
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Porcentual
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Destinada
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Principales
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+            <div style="margin-bottom:20px">Comple
+                <input class="easyui-textbox" name="plano" style="width:100%" data-options="label:'Name:dxsdas'">
+            </div>
+        </div>
+        <div data-options="region:'center'" title="Medidas - Lindero Y Superficie">
+           <div style="margin-bottom:20px">
+            <input class="easyui-textbox" label="Description:" labelPosition="top" multiline="true" value="MIDE: 10,00m. Fte. al N. sobre calle de su ubicación; igual medida C.Fte. S.; 30,00m. en los costados E. y O. LINDA: N. calle pública sin nombre; S. Julio Oviedo; E. lote an y O. lote al. SUPERFICIE: 300,00m2.-" style="width:100%;height:120px">
+        </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- cuadro folio  -->
+
+   
+</body>
+</html>
+<script type="text/javascript">
+
+function buscar(buscar){
+             
+         
+    
+  
+  
+         
+            $('#grid_1').datagrid({
+    url:'backend/consulta_1.php?persona='+buscar,
+    //method:'GET'
+    columns:[[
+        {field:'MATRICULA',title:'MATRICULA',width:100},
+        {field:'APEYNOM',title:'TITULAR',width:400},
+        {field:'DOCUMENTO',title:'DOCUMENTO',width:130,align:'right'},
+        {field:'UBICACION',title:'INMUEBLE UBICACION',width:500,align:'right'}
+     
+        
+        
+    ]]
+
+});
+            $('#grid_1').datagrid('reload');
+           
+     
+        }
+
+ $('#grid_1').datagrid({//eventos correspondientes a la tabla
+                onDblClickRow: function(index,row){//click en un row
+
+                     $('#win-folio').window('open');
+                    $('#fm-folio').form('load',row);
+                     url = 'backend/expediente/registra_movimento_expediente.php?id='+row.numero;
+                }
+            });
+
+ $('#departa').val('Capital');
+</script>
