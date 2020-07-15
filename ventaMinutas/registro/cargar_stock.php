@@ -1,7 +1,7 @@
 <div id="win_cargar_stock" class="easyui-window" closed="true" title="Cargar Stock" style="width:100%;max-width:500px;padding:10px 20px;">
 	<div style="margin-bottom:20px">
-		<label for="desde">Desde:</label>	
-		<input id="fecha_desde" type="text" class="easyui-datebox" required="required">
+		<label for="cantidad">Cantidad:</label>	
+		<input id="cantidad" type="text" class="easyui-text" required="required">
 	</div>
 	<br>	
 	<div style="text-align:center;padding:5px 0">
